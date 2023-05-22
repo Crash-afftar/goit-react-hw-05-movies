@@ -12,9 +12,9 @@ export const Section = styled.div`
 
 export const SectionTitle = styled.h1`
   font-size: 40px;
-  font-weight: 900;
+  font-weight: bold;
   text-align: center;
-
+align-items: center;
   color: #763337;
   margin: 0;
 `;
