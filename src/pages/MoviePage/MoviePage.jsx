@@ -1,6 +1,6 @@
 import { Outlet, Link, useParams, useLocation } from 'react-router-dom';
 import { useEffect, useState, Suspense } from 'react';
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
 import { getMovieById } from "services/api";
 import Loading from "components/Loader/Loader";
 import { MovieSection, LinkGoBack, MovieCard, Poster, NavLins } from './MoviePage.styled';
