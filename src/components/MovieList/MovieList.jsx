@@ -1,35 +1,26 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Section,SectionTitle,List,ListItem,StyledLink } from './MovieList.styled';
+import { Link, useLocation } from 'react-router-dom';
+import { Container, CardWrapper, ProductName, Img } from './MovieList.styled.jsx';
 
-const MovieList = ({ movies }) => {
+const MoviesList = ({ movies }) => {
+  const location = useLocation();
   return (
-    <Section>
-      <SectionTitle>Trending today</SectionTitle>
-      <List>
-        {movies.map(movie => (
-          <ListItem key={movie.id}>
-            <StyledLink to={`/movies/${movie.id}`}>
-              {movie.title}
-            </StyledLink>
-          </ListItem>
-        ))}
-      </List> 
-    </Section>
+    <Container>
+      {movies.map(movie => {
+        const { title, poster_path, id } = movie;
+        return (
+          <CardWrapper key={id}>
+            <Link to={`/movies/${id}`} state={{ from: location }}>
+              <Img
+                src={`https://image.tmdb.org/t/p/w300/${poster_path}`}
+                alt={title}
+              />
+              <ProductName>{title}</ProductName>
+            </Link>
+          </CardWrapper>
+        );
+      })}
+    </Container>
   );
 };
 
-  MovieList.propTypes = {
-    movies: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        title: PropTypes.string.isRequired,
-        release_date: PropTypes.string.isRequired,
-        overview: PropTypes.string.isRequired,
-        poster_path: PropTypes.string,
-        vote_average: PropTypes.number.isRequired,
-      })
-    ).isRequired,
-  };
-
-export default MovieList;
+export default MoviesList
